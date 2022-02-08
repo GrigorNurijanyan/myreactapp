@@ -1,18 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import { node, object, string } from 'prop-types'
 import styles from './FullPage.module.css';
 
-const FullPage= ({children, className}) => {
+const FullPage = ({ children, className, style }) => {
     return (
-        <div className={`${styles.app_fullPage} ${className || ''}`}>
+        <div className={`${styles.app_fullPage} ${className || ''}`} style={style}>
             {children}
         </div>
     );
 };
 
 FullPage.propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string
+    children: node,
+    className: string,
+    style: object,
 }
 
 export default FullPage;
