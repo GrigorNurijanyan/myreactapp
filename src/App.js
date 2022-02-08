@@ -1,11 +1,15 @@
-import Login from "./pages/login/Login";
-
+import { BrowserRouter } from "react-router-dom";
+import AppRouter from "./router/AppRouter";
+import history from './router/History';
 
 function App() {
   return (
-    <div className="App">
-        <Login />
-    </div>
+    <BrowserRouter 
+      history={history}
+    >
+      <AppRouter />
+    </BrowserRouter>
+  
   );
 }
 

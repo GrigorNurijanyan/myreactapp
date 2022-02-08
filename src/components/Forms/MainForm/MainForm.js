@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form } from 'antd';
 import { func, node, object, string, array } from 'prop-types'
-import './MainForm.css';
 
 const MainForm = ({ form, size, name, children, initialValues, onFinish, onFinishFailed, validateTrigger, className }) => {
     return (
