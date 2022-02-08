@@ -1,23 +1,23 @@
 import React from 'react';
 import { Form } from 'antd';
-import { object, string } from 'prop-types'
+import { func, node, object, string, array } from 'prop-types'
 import './MainForm.css';
 
-const MainForm = ({ form, size }) => {
+const MainForm = ({ form, size, name, children, initialValues, onFinish, onFinishFailed, validateTrigger, className }) => {
     return (
         <Form
             form={form}
             size={size}
             name={name}
-            initialValues={props.initialValues}
-            onFinish={props.onFinish}
-            onFinishFailed={props.onFinishFailed}
+            initialValues={initialValues}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
             scrollToFirstError
-            validateTrigger={props.validateTrigger || ['onBlur']}
+            validateTrigger={validateTrigger || ['onBlur']}
             layout="vertical"
-            className={`mat-form ${props.className || ''}`}
+            className={`mat-form ${className || ''}`}
         >
-            {props.children}
+            {children}
         </Form>
     )
 }
@@ -33,7 +33,13 @@ MainForm.defaultProps = {
 MainForm.propTypes = {
     form: object,
     size: string,
-    name: string
+    name: string,
+    initialValues: object,
+    children: node,
+    onFinish: func,
+    onFinishFailed: func,
+    validateTrigger: array,
+    className: string,
 }
 
 export default MainForm;
