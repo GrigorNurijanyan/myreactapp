@@ -1,0 +1,35 @@
+.main_layout {
+    height: 100vh;
+}
+
+.site_layout {
+    height: 100%;
+    overflow: hidden;
+}
+
+.site_layout_background {
+    height: 100%;
+    overflow: hidden auto;
+    padding: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
