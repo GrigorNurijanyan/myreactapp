@@ -1,2 +1,3 @@
-import 'antd/dist/antd.css'
+
 import './color.css';
+import 'react-toastify/dist/ReactToastify.css';

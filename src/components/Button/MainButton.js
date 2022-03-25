@@ -1,14 +1,13 @@
 import React from 'react';
 import { Button } from 'antd';
-import { object, string, node, bool } from 'prop-types'
-import styles from './Card.module.css';
+import { object, string, node, bool, func } from 'prop-types'
 
-const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, className, disabled, size }) => {
+const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, className, disabled, size, shape }) => {
     return (
-        <Button 
+        <Button
             type="primary"
             onClick={onClick}
-            formName={formName}
+            formname={formName}
             htmlType={htmlType}
             icon={icon}
             style={style}
@@ -22,9 +21,9 @@ const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, clas
     );
 };
 
-MatButton.defaultProps = {
+MainButton.defaultProps = {
     buttonText: 'Main Button',
-    formName: 'formSubmit',
+    formname: 'formSubmit',
     htmlType: 'submit',
     size: 'middle',
     shape: 'default'
@@ -32,7 +31,7 @@ MatButton.defaultProps = {
 
 MainButton.propTypes = {
     buttonText: string,
-    formName: string,
+    formname: string,
     onClick: func,
     icon: node,
     style: object,
