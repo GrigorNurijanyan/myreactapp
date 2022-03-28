@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout } from "antd";
 import MainSider from "../MainSider";
 import MainHeader from "../MainHeader";
@@ -10,8 +10,6 @@ import { connect } from "react-redux";
 const { Content } = Layout;
 
 const MainLayout = (props) => {
-    console.log("props==>", props);
-
     return (
         <Layout className={styles.main_layout}>
             <MainSider collapsed={props.menuOpen} />
