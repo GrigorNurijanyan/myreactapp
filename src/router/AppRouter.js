@@ -10,12 +10,8 @@ const AppRouter = (props) => {
   return (
     <Routes>
       <Route exact path="/login" element={<Login />} />
-      <Route path="/" element={<MainLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-      <Route path="/" element={<MainLayout />}>
-        <Route path="/user" element={<User />} />
-      </Route>
+      <Route path="/dashboard" element={<MainLayout><Dashboard /></MainLayout>} />
+      <Route path="/user" element={<MainLayout><User /></MainLayout>} />
       <Route exact path="/error" element={<ErrorPage />} />
       <Route path="*" element={<Navigate to="/error" />} />
     </Routes>

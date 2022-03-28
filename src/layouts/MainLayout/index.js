@@ -1,33 +1,50 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
-import { Outlet } from "react-router-dom";
 import MainSider from "../MainSider";
 import MainHeader from "../MainHeader";
-import styles from './MainLayout.module.css'
 import MainFooter from "../MainFooter";
+import { node, bool } from "prop-types";
+import styles from './MainLayout.module.css'
+import { connect } from "react-redux";
 
 const { Content } = Layout;
 
-const MainLayout = () => {
-    const [collapsed, setCollapsed] = useState(false);
+const MainLayout = (props) => {
+    console.log("props==>", props);
 
     return (
         <Layout className={styles.main_layout}>
-            <MainSider collapsed={collapsed} />
+            <MainSider collapsed={props.menuOpen} />
             <Layout className={styles.site_layout}>
                 <MainHeader
-                    collapsed={collapsed}
-                    setCollapsed={setCollapsed}
+                    collapsed={props.menuOpen}
                 />
                 <Content
                     className={styles.site_layout_background}
                 >
-                    <Outlet />
+                    {props.children &&
+                        React.cloneElement(props.children, {
+                            menuOpen: props.menuOpen,
+                            ...props
+                        })}
                 </Content>
-                <MainFooter />
+                {!props.footer && < MainFooter />}
             </Layout>
         </Layout>
     );
 };
 
-export default MainLayout;
+MainLayout.propsType = {
+    children: node,
+    footer: bool,
+    menuOpen: bool,
+}
+
+const mapStateToProps = (state) => {
+    const { menuOpen } = state
+    return {
+        menuOpen: menuOpen,
+    }
+}
+
+export default connect(mapStateToProps, null)(MainLayout)
