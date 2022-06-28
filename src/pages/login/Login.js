@@ -20,7 +20,7 @@ const Login = (props) => {
     const onFinish = async (values) => {
         console.log("values=>", values);
         if (values.username === 'admin' && values.password === 'admin') {
-            navigate('/dashboard')
+            navigate('/user')
         } else {
             notifyError('Please check your username or password')
         }
