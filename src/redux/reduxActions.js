@@ -1,5 +1,5 @@
 import { store } from './reducer';
-import { SET_MENU_OPEN } from './constants'
+import { SET_MENU_OPEN } from './reduxConstants'
 
 const actions = {
     setMenuOpen: (value) => {

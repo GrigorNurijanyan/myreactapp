@@ -1,3 +1,6 @@
 .main_header {
     background-color: var(--white)!important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
