@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import { SET_MENU_OPEN } from './constants'
+import { SET_MENU_OPEN } from './reduxConstants'
 
 const reducer = (state, action) => {
 

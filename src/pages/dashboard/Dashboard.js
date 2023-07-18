@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 const Dashboard = (props) => {
-    return (
-        <div>
-            This is Dashboard
-        </div>
-    );
+  const { t } = useTranslation();
+
+  return (
+    <div>
+      {t("Dashboard")}
+    </div>
+  );
 };
 
 export default Dashboard;

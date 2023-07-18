@@ -1,0 +1,37 @@
+.main_select_wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--borderLine);
+    border-radius: 4px;
+    padding: 5px 10px;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    .prefixIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 8px;
+        width: 23px;
+        height: 20px;
+        padding-right: 8px;
+    }
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        border-style: none;
+        background: transparent;
+        padding: 0 17px 0 30px;
+    }
+    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        border-color: transparent;
+        box-shadow: none;
+        opacity: 1;
+    }
+
+    .main-select {
+        .ant-select-arrow {
+            right: 0;
+        }
+    }
+}
+
