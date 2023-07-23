@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PageCard from '../../components/Card/Card';
 import FullPage from '../../components/FullPage/FullPage';
 import componentStyles from '../../styles/Components.module.css';
 import style from './Login.module.css';
 import MainForm from '../../components/Forms/MainForm/MainForm';
 import FormInput from '../../components/Forms/FormInput/FormInput';
+import FormInputEmail from '../../components/Forms/FormInputEmail/FormInputEmail';
 import FormInputPassword from '../../components/Forms/FormInputPassword/FormInputPassword';
 import MainButton from '../../components/Button/MainButton';
 import { Form, Space } from 'antd';
-import { notifyError } from '../../components/Notify/Notify';
 import { useNavigate } from 'react-router-dom';
 import Center from '../../components/Center/Center';
+import FormInputPasswordConfirm from '../../components/Forms/FormInputPassword/FormInputPasswordConfirm';
+import { notifyError, notifySuccess } from '../../components/Notify/Notify';
 
-const Login = (props) => {
+const Register = (props) => {
 
     const [form] = Form.useForm()
     const navigate = useNavigate();
@@ -25,11 +27,11 @@ const Login = (props) => {
             },
             body: JSON.stringify(values),
           };
-        fetch(`${process.env.REACT_APP_NODE_DOMAIN}/login`, requestOptions)
+        fetch(`${process.env.REACT_APP_NODE_DOMAIN}/register`, requestOptions)
         .then((response) => response.json())
         .then((responseData) => {
             if (responseData.success) {
-                navigate('/dashboard')
+                notifySuccess('You Registered Successfully')
             } else {
                 notifyError(responseData.error)
             }
@@ -44,36 +46,48 @@ const Login = (props) => {
             console.log("Error");
         }
     }
-    
+
     return (
         <FullPage className={`${componentStyles.d_flex_align_center} ${style.login_page}`}>
-            <PageCard title={'Login'} span={6}>
+            <PageCard title={'Register'} span={6}>
                 <MainForm
                     form={form}
-                    name='formLogin'
+                    name='formRegister'
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                 >
                     <FormInput
                         name={'username'}
                         label={'Username'}
+                        required
+                    />
+                    <FormInputEmail
+                        name={'email'}
+                        label={'Email'}
+                        required
                     />
                     <FormInputPassword
                         name={'password'}
                         label={'Password'}
+                        required
+                    />
+                    <FormInputPasswordConfirm
+                        name={'confirm_password'}
+                        label={'Confirm Password'}
+                        required
                     />
                     <Center>
                         <Space>
                             <MainButton
-                                formName={'formLogin'}
-                                buttonText={'Login'}
+                                formName={'formRegister'}
+                                buttonText={'Register'}
                             />
                             <MainButton
                                 htmlType={'buttom'}
                                 type="dashed"
-                                buttonText={'Register'}
+                                buttonText={'Login'}
                                 onClick={() => {
-                                    navigate('/register')
+                                    navigate('/login')
                                 }}
                             />
                         </Space>
@@ -84,4 +98,4 @@ const Login = (props) => {
     );
 };
 
-export default Login;
+export default Register;

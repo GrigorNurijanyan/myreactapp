@@ -2,10 +2,10 @@ import React from 'react';
 import { Button } from 'antd';
 import { object, string, node, bool, func } from 'prop-types'
 
-const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, className, disabled, size, shape }) => {
+const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, className, disabled, size, shape, type }) => {
     return (
         <Button
-            type="primary"
+            type={type}
             onClick={onClick}
             formname={formName}
             htmlType={htmlType}
@@ -26,7 +26,8 @@ MainButton.defaultProps = {
     formname: 'formSubmit',
     htmlType: 'submit',
     size: 'middle',
-    shape: 'default'
+    shape: 'default',
+    type: 'primary',
 }
 
 MainButton.propTypes = {
@@ -38,6 +39,7 @@ MainButton.propTypes = {
     className: string,
     disabled: bool,
     shape: string,
+    type: string,
 }
 
 export default MainButton;
