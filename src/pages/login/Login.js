@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PageCard from '../../components/Card/Card';
 import FullPage from '../../components/FullPage/FullPage';
 import componentStyles from '../../styles/Components.module.css';
@@ -21,22 +21,22 @@ const Login = (props) => {
         const requestOptions = {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(values),
-          };
+        };
         fetch(`${process.env.REACT_APP_NODE_DOMAIN}/login`, requestOptions)
-        .then((response) => response.json())
-        .then((responseData) => {
-            if (responseData.success) {
-                navigate('/dashboard')
-            } else {
-                notifyError(responseData.error)
-            }
-        })
-        .catch((error) => {
-            console.error('Error making POST request:', error);
-        });
+            .then((response) => response.json())
+            .then((responseData) => {
+                if (responseData.success) {
+                    navigate('/dashboard')
+                } else {
+                    notifyError(responseData.error)
+                }
+            })
+            .catch((error) => {
+                console.error('Error making POST request:', error);
+            });
     }
 
     const onFinishFailed = (errorInfo) => {
@@ -44,7 +44,7 @@ const Login = (props) => {
             console.log("Error");
         }
     }
-    
+
     return (
         <FullPage className={`${componentStyles.d_flex_align_center} ${style.login_page}`}>
             <PageCard title={'Login'} span={6}>
