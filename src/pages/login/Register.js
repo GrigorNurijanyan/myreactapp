@@ -13,6 +13,8 @@ import { useNavigate } from 'react-router-dom';
 import Center from '../../components/Center/Center';
 import FormInputPasswordConfirm from '../../components/Forms/FormInputPassword/FormInputPasswordConfirm';
 import { notifyError, notifySuccess } from '../../components/Notify/Notify';
+import { getEncriptedPassword } from '../../utils/settings';
+import { urlPostMethod } from '../../utils/utilsUrls';
 
 const Register = (props) => {
 
@@ -20,25 +22,13 @@ const Register = (props) => {
     const navigate = useNavigate();
 
     const onFinish = async (values) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          };
-        fetch(`${process.env.REACT_APP_NODE_DOMAIN}/register`, requestOptions)
-        .then((response) => response.json())
-        .then((responseData) => {
-            if (responseData.success) {
-                notifySuccess('You Registered Successfully')
-            } else {
-                notifyError(responseData.error)
-            }
-        })
-        .catch((error) => {
-            console.error('Error making POST request:', error);
-        });
+        values.password = getEncriptedPassword(values.password)
+        const result = await urlPostMethod('/register', values)
+        if (result.success) {
+            notifySuccess('You Registered Successfully')
+        } else {
+            notifyError(result.errMsg)
+        }
     }
 
     const onFinishFailed = (errorInfo) => {
@@ -57,7 +47,7 @@ const Register = (props) => {
                     onFinishFailed={onFinishFailed}
                 >
                     <FormInput
-                        name={'username'}
+                        name={'username'} 
                         label={'Username'}
                         required
                     />

@@ -4,7 +4,7 @@ import ErrorPage from "../components/Error/ErrorPage";
 import MainLayout from "../layouts/MainLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Login from "../pages/login/Login";
-import User from "../pages/user";
+import Category from "../pages/categories";
 import Register from "../pages/login/Register";
 
 const AppRouter = (props) => {
@@ -13,7 +13,7 @@ const AppRouter = (props) => {
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/register" element={<Register />} />
       <Route path="/dashboard" element={<MainLayout><Dashboard /></MainLayout>} />
-      <Route path="/user" element={<MainLayout><User /></MainLayout>} />
+      <Route path="/category" element={<MainLayout><Category /></MainLayout>} />
       <Route exact path="/error" element={<ErrorPage />} />
       <Route path="*" element={<Navigate to="/error" />} />
     </Routes>

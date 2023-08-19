@@ -21,9 +21,9 @@ const MainSider = ({ collapsed }) => {
                     Dashboard
                 </Menu.Item>
                 <Menu.Item key="2" icon={<UserOutlined />} onClick={() => {
-                    navigate('/user')
+                    navigate('/category')
                 }}>
-                    User
+                    Category
                 </Menu.Item>
             </Menu>
         </Sider>

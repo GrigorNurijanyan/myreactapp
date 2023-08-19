@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PageCard from '../../components/Card/Card';
 import FullPage from '../../components/FullPage/FullPage';
 import componentStyles from '../../styles/Components.module.css';
@@ -11,6 +11,9 @@ import { Form, Space } from 'antd';
 import { notifyError } from '../../components/Notify/Notify';
 import { useNavigate } from 'react-router-dom';
 import Center from '../../components/Center/Center';
+import { getEncriptedPassword } from '../../utils/settings';
+import { urlPostMethod } from '../../utils/utilsUrls';
+import reduxActions from '../../redux/reduxActions';
 
 const Login = (props) => {
 
@@ -18,25 +21,15 @@ const Login = (props) => {
     const navigate = useNavigate();
 
     const onFinish = async (values) => {
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          };
-        fetch(`${process.env.REACT_APP_NODE_DOMAIN}/login`, requestOptions)
-        .then((response) => response.json())
-        .then((responseData) => {
-            if (responseData.success) {
-                navigate('/dashboard')
-            } else {
-                notifyError(responseData.error)
-            }
-        })
-        .catch((error) => {
-            console.error('Error making POST request:', error);
-        });
+        values.password = getEncriptedPassword(values.password)
+        const result = await urlPostMethod('/login', values)
+        if (result.success) {
+            localStorage.setItem('token', result.accessToken);
+            reduxActions.setAccessToken(result.accessToken)
+            navigate('/dashboard')
+        } else {
+            notifyError(result.errMsg)
+        }
     }
 
     const onFinishFailed = (errorInfo) => {
