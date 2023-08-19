@@ -3,4 +3,6 @@ export const hy = {
     "Select Item": 'Ընտրել',
     English: 'Անգլերեն',
     Armenian: 'Հայերեն',
+    CreateCategory: 'Ստեղծել Կատեգորիա',
+    Name: 'Անուն',
 }

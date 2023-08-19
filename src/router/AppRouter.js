@@ -4,7 +4,7 @@ import ErrorPage from "../components/Error/ErrorPage";
 import MainLayout from "../layouts/MainLayout";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Login from "../pages/login/Login";
-import Category from "../pages/categories";
+import Category from "../pages/category";
 import Register from "../pages/login/Register";
 
 const AppRouter = (props) => {

@@ -7,7 +7,7 @@ const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, clas
         <Button
             type={type}
             onClick={onClick}
-            formname={formName}
+            form={formName}
             htmlType={htmlType}
             icon={icon}
             style={style}
@@ -23,7 +23,7 @@ const MainButton = ({ buttonText, formName, onClick, htmlType, icon, style, clas
 
 MainButton.defaultProps = {
     buttonText: 'Main Button',
-    formname: 'formSubmit',
+    formName: 'formSubmit',
     htmlType: 'submit',
     size: 'middle',
     shape: 'default',
@@ -32,7 +32,7 @@ MainButton.defaultProps = {
 
 MainButton.propTypes = {
     buttonText: string,
-    formname: string,
+    form: string,
     onClick: func,
     icon: node,
     style: object,

@@ -37,7 +37,7 @@ const Login = (props) => {
             console.log("Error");
         }
     }
-    
+
     return (
         <FullPage className={`${componentStyles.d_flex_align_center} ${style.login_page}`}>
             <PageCard title={'Login'} span={6}>
