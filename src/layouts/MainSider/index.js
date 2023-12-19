@@ -11,21 +11,36 @@ const { Sider } = Layout
 const MainSider = ({ collapsed }) => {
     const navigate = useNavigate()
 
+    const items = [
+        {
+            key: '/dashboard',
+            icon: <UserOutlined />,
+            label: 'Dashboard'
+        },
+        {
+            key: '/category',
+            icon: <UserOutlined />,
+            label: 'Category'
+        },
+        {
+            key: '/products/list',
+            icon: <UserOutlined />,
+            label: 'Products'
+        },
+    ]
+
     return (
         <Sider trigger={null} collapsible collapsed={collapsed}>
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-                <Menu.Item key="1" icon={<UserOutlined />} onClick={() => {
-                    navigate('/dashboard')
-                }}>
-                    Dashboard
-                </Menu.Item>
-                <Menu.Item key="2" icon={<UserOutlined />} onClick={() => {
-                    navigate('/category')
-                }}>
-                    Category
-                </Menu.Item>
-            </Menu>
+            <Menu
+                theme="dark"
+                mode="inline"
+                defaultSelectedKeys={["/dashboard"]}
+                items={items}
+                onClick={(e) => {
+                    navigate(e.key)
+                }}
+            />
         </Sider>
     );
 };

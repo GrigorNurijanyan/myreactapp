@@ -1,17 +1,26 @@
-import { Select } from 'antd';
+import { Form, Select } from 'antd';
 import { bool, func, node, string } from 'prop-types';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './mainSelect.scss';
+import { object } from 'prop-types';
 
-const MainSelect = ({ onChange, options, placeholder, showArrow, suffixIcon, onSelect, value, prefixIcon, onlyIcon }) => {
+const FormSelect = ({ onChange, options, placeholder, showArrow, suffixIcon, onSelect, value, prefixIcon, onlyIcon, formClassName, name, label, formStyle, hasFeedback, required }) => {
     const { t } = useTranslation()
 
     return (
-        <div className={`main_select_wrapper ${onlyIcon ? 'main-select-only-icon' : ''}`}>
-            {
-                prefixIcon && <div className={'prefixIcon'}>{prefixIcon}</div>
-            }
+        <Form.Item
+            className={formClassName}
+            label={label}
+            name={name}
+            style={formStyle}
+            hasFeedback={hasFeedback}
+            rules={[
+                {
+                    required: required,
+                    message: `Please input your ${label}!`,
+                },
+            ]}
+        >
             <Select
                 className={'main-select'}
                 placeholder={t(placeholder)}
@@ -33,11 +42,11 @@ const MainSelect = ({ onChange, options, placeholder, showArrow, suffixIcon, onS
                     ))
                 }
             </Select>
-        </div>
+        </Form.Item>
     );
 };
 
-MainSelect.propTypes = {
+FormSelect.propTypes = {
     onChange: func,
     placeholder: string,
     showArrow: bool,
@@ -46,14 +55,24 @@ MainSelect.propTypes = {
     value: string,
     prefixIcon: node,
     onlyIcon: bool,
+    formClassName: object,
+    formStyle: object,
+    name: string,
+    label: string,
+    hasFeedback: bool,
+    required: bool,
 }
 
-MainSelect.defaultProps = {
+FormSelect.defaultProps = {
     onChange: () => { },
     onSelect: () => { },
     placeholder: 'Select Item',
+    label: 'Select Item',
     showarrow: true,
     onlyIcon: false,
+    hasFeedback: true,
+    required: false,
+    options: []
 }
 
-export default MainSelect;
+export default FormSelect;

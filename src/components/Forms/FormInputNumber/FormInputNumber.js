@@ -1,8 +1,13 @@
 import React from "react";
-import { Form, Input } from "antd";
+import { Form, InputNumber } from "antd";
 import { func, bool, object, string } from "prop-types";
+import './FormInputNumber.scss'
 
-const FormInput = ({
+export const AMD = "֏"
+export const AMD_FORMMATER_REGEX = /\B(?=(\d{3})+(?!\d))/g
+export const AMD_PARSER = /\֏\s?|(,*)/g
+
+const FormInputNumber = ({
   label,
   required,
   name,
@@ -15,7 +20,9 @@ const FormInput = ({
   onBlur,
   onPressEnter,
   allowClear,
-  hasFeedback
+  hasFeedback,
+  formatter,
+  parser
 }) => {
   return (
     <Form.Item
@@ -31,11 +38,13 @@ const FormInput = ({
         },
       ]}
     >
-      <Input
+      <InputNumber
         placeholder={placeholder || label}
         size={size}
         className={className}
-        allowClear={allowClear}
+        allowclear={allowClear}
+        formatter={formatter}
+        parser={parser}
         onChange={(e) => {
           onChange && onChange(e)
         }}
@@ -46,7 +55,7 @@ const FormInput = ({
   );
 };
 
-FormInput.defaultProps = {
+FormInputNumber.defaultProps = {
   label: "Label",
   placeholder: "Placeholder",
   size: 'middle',
@@ -55,7 +64,7 @@ FormInput.defaultProps = {
   hasFeedback: true,
 };
 
-FormInput.propTypes = {
+FormInputNumber.propTypes = {
   label: string,
   name: string,
   placeholder: string,
@@ -69,6 +78,8 @@ FormInput.propTypes = {
   onChange: func,
   onBlur: func,
   onPressEnter: func,
+  formatter: func,
+  parser: func,
 };
 
-export default FormInput;
+export default FormInputNumber;
