@@ -26,3 +26,24 @@ export const urlPostMethod = async (url, body) => {
         }
     });
 }
+
+export const urlGetImagesUrl = async (url, body) => {
+    const sentUrl = `${MAIN_URL}${url}`;
+    const timeout = 30000;
+
+    const formData = new FormData();
+    formData.append('images', body);
+
+    return await axios.post(sentUrl, formData, { timeout: timeout })
+    .then(response => {
+      if (response.status === 200) {
+          return response.data
+      }
+    })
+    .catch(err => {
+      return {
+          errMsg: err.response?.data.error || err.response?.statusText || err.message,
+          status: err.response?.status
+      }
+  });
+}

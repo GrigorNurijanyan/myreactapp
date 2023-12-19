@@ -12,6 +12,7 @@ import FormDraggerUpload from '../../components/Forms/FormUpload/FormDraggerUplo
 const Category = () => {
     const { t } = useTranslation();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [uploadImage, setUploadImgae] = useState('');
     const [tableData, setTableData] = useState([]);
 
     const [form] = Form.useForm()
@@ -57,13 +58,22 @@ const Category = () => {
                     name={'createCategoryForm'}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
+                    // initialValues={{name: '', image: ''}}
                 >
                     <FormInput
                         name={'name'}
                         label={t('Name')}
                         required
                     />
-                    <FormDraggerUpload name={'image'} maxCount={1} label={'Upload your category photo'} />
+                    <FormDraggerUpload 
+                        name={'image'} 
+                        mediaData={uploadImage}
+                        maxCount={1} 
+                        label={'Upload your category photo'} 
+                        onUpload={(file) => {
+                            setUploadImgae(file.url)
+                        }} 
+                    />
                 </MainForm>
             </PageModal>
             <PageTable
